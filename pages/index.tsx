@@ -3,7 +3,7 @@
  * Description: The "homepage", so to speak.
  * Copyright (c) 2021 PredictiveUX
  */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 
 import { AlbumTable, FilterInput, PageTitle } from 'components/'
@@ -11,11 +11,17 @@ import { AlbumTable, FilterInput, PageTitle } from 'components/'
 import css from 'styles/Home.module.css'
 
 const Home = (): JSX.Element => {
-  const [albumData] = useState([])
+  const [albumData, setAlbumData] = useState([])
+
   /**
-   * how will you fetch the album data
+   * Fetch data with a GET request to http://localhost:3000/api/albums
    */
-  // useEffect(() => {}, [])
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/albums')
+      .then((responseAsJSON) => responseAsJSON.json()) //parse JSON response
+      .then((response) => setAlbumData(response)) //set albumData state to response
+  }, [])
 
   return (
     <React.Fragment>

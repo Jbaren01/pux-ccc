@@ -22,7 +22,8 @@ const AlbumTable: React.FC<AlbumTableProps> = ({ data }: AlbumTableProps): JSX.E
      */
 
     const { id } = currentAlbumObj
-    const albumKeys = Object.keys(currentAlbumObj)
+    const albumKeys = Object.keys(currentAlbumObj).slice(1)
+    console.log('albumKeys:', albumKeys)
     const albumCells = albumKeys.map((key) => (
       <td key={`${id}-${key}-${currentAlbumObj[key]}`}>{currentAlbumObj[key]}</td>
     ))

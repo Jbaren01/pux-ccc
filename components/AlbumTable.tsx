@@ -16,6 +16,31 @@ type AlbumTableProps = {
 }
 
 const AlbumTable: React.FC<AlbumTableProps> = ({ data }: AlbumTableProps): JSX.Element => {
+  const generateAlbumCells = (currentAlbumObj) => {
+    /**
+     * generate an array that contains one cell for each key in each album object
+     */
+
+    const { id } = currentAlbumObj
+    const albumKeys = Object.keys(currentAlbumObj)
+    const albumCells = albumKeys.map((key) => (
+      <td key={`${id}-${key}-${currentAlbumObj[key]}`}>{currentAlbumObj[key]}</td>
+    ))
+    return albumCells
+  }
+
+  const generateAlbumRows = () => {
+    /**
+     * map over the array of data for each album generate a row for that album
+     */
+
+    const albumRows = data.map((albumObj) => {
+      const { id, album } = albumObj
+      return <tr key={`${id}-${album}`}>{generateAlbumCells(albumObj)}</tr>
+    })
+    return albumRows
+  }
+
   return (
     <Wrapper>
       <table className={css.albumTable}>
@@ -29,17 +54,7 @@ const AlbumTable: React.FC<AlbumTableProps> = ({ data }: AlbumTableProps): JSX.E
             <th>Sold</th>
           </tr>
         </thead>
-        <tbody>
-          {/* this is placeholder data...substitute with your fetched data */}
-          <tr>
-            <td>United States</td>
-            <td>4</td>
-            <td>AC/DC</td>
-            <td>Back in Black</td>
-            <td>1980</td>
-            <td>25,000,000</td>
-          </tr>
-        </tbody>
+        <tbody>{generateAlbumRows()}</tbody>
       </table>
     </Wrapper>
   )

@@ -18,6 +18,7 @@ type AlbumTableProps = {
 const AlbumTable: React.FC<AlbumTableProps> = ({ data }: AlbumTableProps): JSX.Element => {
   // add comas function
   const addCommas = (num) => {
+    if (typeof num !== 'number') return num
     //toString the num
     const numStr = num.toString().split('')
     const newStrArr = []

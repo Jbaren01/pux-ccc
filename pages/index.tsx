@@ -32,7 +32,11 @@ const Home = (): JSX.Element => {
 
   //filter search function
   const filterBy = (rows) => {
-    return rows.filter((row) => row.artist.toLowerCase().indexOf(query) > -1)
+    return rows.filter(
+      (row) =>
+        row.artist.toLowerCase().indexOf(query) > -1 ||
+        row.country.toLowerCase().indexOf(query) > -1
+    )
   }
 
   // on change handler function

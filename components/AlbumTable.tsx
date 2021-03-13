@@ -16,12 +16,19 @@ type AlbumTableProps = {
 }
 
 const AlbumTable: React.FC<AlbumTableProps> = ({ data }: AlbumTableProps): JSX.Element => {
-  // add comas function
+  // addComas: formats the numbers in "Sold" column to have commas
+
   const addCommas = (num) => {
-    if (typeof num !== 'number') return num
-    const numStr = num.toString().split('')
+    if (typeof num !== 'number') return num // if number has been formatted return it
+    const numStr = num.toString().split('') // convert number into an array of strings
     const newStrArr = []
     let counter = 0
+
+    /**
+     * Iterate over the array
+     * Add each element from the front of the array
+     * Every third number add a comma
+     */
 
     for (let i = numStr.length - 1; i >= 0; i -= 1) {
       const current = numStr[i]
@@ -33,16 +40,21 @@ const AlbumTable: React.FC<AlbumTableProps> = ({ data }: AlbumTableProps): JSX.E
         newStrArr.unshift(current)
       }
     }
+
+    /**
+     * Join the array back into a string and return it
+     */
+
     const finalNum = newStrArr.join('')
     return finalNum
   }
 
   const generateAlbumCells = (currentAlbumObj) => {
     /**
-     * generate an array that contains one cell for each key in each album object
+     * Generate an array that contains one cell for
+     * each key in each album object
      */
 
-    // console.log('currentAlbumObj:', currentAlbumObj['sold'])
     const numTimesSold = addCommas(currentAlbumObj['sold'])
     console.log(numTimesSold)
 
@@ -58,15 +70,14 @@ const AlbumTable: React.FC<AlbumTableProps> = ({ data }: AlbumTableProps): JSX.E
 
   const generateAlbumRows = () => {
     /**
-     * map over the array of data for each album generate a row for that album
+     * Map over the array of data for each album and
+     * generate a row for that album
      */
-    // sort here on country
+
     const albumRows = data.map((albumObj) => {
       const { id, album } = albumObj
-      // console.log('albumObj:', albumObj)
       return <tr key={`${id}-${album}`}>{generateAlbumCells(albumObj)}</tr>
     })
-
     return albumRows
   }
 
@@ -82,14 +93,6 @@ const AlbumTable: React.FC<AlbumTableProps> = ({ data }: AlbumTableProps): JSX.E
             <th>Sold</th>
             <th>Rank</th>
           </tr>
-          {/* <tr>
-            <th>Country</th>
-            <th>Rank</th>
-            <th>Artist</th>
-            <th>Album</th>
-            <th>Year</th>
-            <th>Sold</th>
-          </tr> */}
         </thead>
         <tbody>{generateAlbumRows()}</tbody>
       </table>

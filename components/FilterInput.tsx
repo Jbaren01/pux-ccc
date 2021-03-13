@@ -3,6 +3,8 @@
  * Description: Component used for filtering data
  * Copyright (c) 2021 PredictiveUX
  */
+
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import css from 'styles/Home.module.css'
@@ -22,15 +24,17 @@ const Instructions = styled.div`
 /**
  * We presume you'll need some kind of change handler to listen to inputs
  */
-// type FilterInputProps = {
-//   changeHandler: (evt: Event) => void
-// }
+type FilterInputProps = {
+  query: any
+  changeHandler: (evt: Event) => void
+}
 
-const FilterInput = (): JSX.Element => {
+const FilterInput = ({ query, changeHandler }: FilterInputProps): JSX.Element => {
+  // const [query, setQuery] = useState('')
   return (
     <Wrapper>
       <Instructions>Use this input to filter data...</Instructions>
-      <input type='text' className={css.filterInput} />
+      <input type='text' className={css.filterInput} value={query} onChange={changeHandler} />
     </Wrapper>
   )
 }

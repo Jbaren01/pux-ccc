@@ -13,7 +13,6 @@ const Wrapper = styled.div`
 
 type AlbumTableProps = {
   data: any[]
-  sortBy: any
 }
 
 const AlbumTable: React.FC<AlbumTableProps> = ({ data }: AlbumTableProps): JSX.Element => {
@@ -43,7 +42,6 @@ const AlbumTable: React.FC<AlbumTableProps> = ({ data }: AlbumTableProps): JSX.E
      * generate an array that contains one cell for each key in each album object
      */
 
-    // currentAlbumObj['sold'] += 1
     // console.log('currentAlbumObj:', currentAlbumObj['sold'])
     const numTimesSold = addCommas(currentAlbumObj['sold'])
     console.log(numTimesSold)

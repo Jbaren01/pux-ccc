@@ -12,6 +12,7 @@ import css from 'styles/Home.module.css'
 
 const Home = (): JSX.Element => {
   const [albumData, setAlbumData] = useState([])
+  const [query, setQuery] = useState('')
 
   /**
    * Fetch data with a GET request to http://localhost:3000/api/albums
@@ -24,9 +25,21 @@ const Home = (): JSX.Element => {
   }, [])
 
   //sort function
-  const sortBy = (key) => {
-    const sortedData = albumData.sort((a, b) => a[key] > b[key])
-    return sortedData
+  // const sortBy = (key) => {
+  //   const sortedData = albumData.sort((a, b) => a[key] > b[key])
+  //   return sortedData
+  // }
+
+  //filter search function
+  const filterBy = (rows) => {
+    return rows.filter((row) => row.artist.toLowerCase().indexOf(query) > -1)
+  }
+
+  // on change handler function
+
+  const changeHandler = (e) => {
+    const { value } = e.target
+    setQuery(value)
   }
 
   return (
@@ -43,8 +56,8 @@ const Home = (): JSX.Element => {
       </div>
       <div className={css.container}>
         <PageTitle />
-        <FilterInput />
-        <AlbumTable data={albumData} sortBy={sortBy} />
+        <FilterInput query={query} changeHandler={changeHandler} setQuery={setQuery} />
+        <AlbumTable data={filterBy(albumData)} />
       </div>
     </React.Fragment>
   )

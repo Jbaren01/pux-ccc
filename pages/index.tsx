@@ -23,6 +23,12 @@ const Home = (): JSX.Element => {
       .then((response) => setAlbumData(response)) //set albumData state to response
   }, [])
 
+  //sort function
+  const sortBy = (key) => {
+    const sortedData = albumData.sort((a, b) => a[key] > b[key])
+    return sortedData
+  }
+
   return (
     <React.Fragment>
       <Head>
@@ -38,7 +44,7 @@ const Home = (): JSX.Element => {
       <div className={css.container}>
         <PageTitle />
         <FilterInput />
-        <AlbumTable data={albumData} />
+        <AlbumTable data={albumData} sortBy={sortBy} />
       </div>
     </React.Fragment>
   )

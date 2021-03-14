@@ -7,6 +7,7 @@ import styled from 'styled-components'
 
 /** styled components here */
 const Wrapper = styled.div`
+  text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
 `

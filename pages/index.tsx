@@ -15,23 +15,24 @@ const Home = (): JSX.Element => {
   const [query, setQuery] = useState('')
 
   /**
-   * Fetch data with a GET request to http://localhost:3000/api/albums
+   * Fetch data when the component mounts with a GET request
+   * to http://localhost:3000/api/albums
    */
 
   useEffect(() => {
     fetch('http://localhost:3000/api/albums')
       .then((responseAsJSON) => responseAsJSON.json()) //parse JSON response
       .then((response) => {
-        sortBy(response)
+        sortByCountryAndRank(response)
       })
   }, [])
 
   /**
-   * sortBy sorts the input data first by country and
+   * sortByCountryAndRank sorts the input data first by country and
    * then by rank
    */
 
-  const sortBy = (dataArray) => {
+  const sortByCountryAndRank = (dataArray) => {
     const sortedData = dataArray.sort((a, b) => {
       if (a.country < b.country) return -1
       if (a.country > b.country) return 1

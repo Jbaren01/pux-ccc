@@ -16,9 +16,9 @@ type AlbumTableProps = {
 }
 
 const AlbumTable: React.FC<AlbumTableProps> = ({ data }: AlbumTableProps): JSX.Element => {
-  // addComas: formats the numbers in "Sold" column to have commas
-
   const addCommas = (num) => {
+    // addComas: formats the numbers in the "Sold" column to have commas
+
     if (typeof num !== 'number') return num // if number has been formatted return it
     const numStr = num.toString().split('') // convert number into an array of strings
     const newStrArr = []
@@ -40,7 +40,6 @@ const AlbumTable: React.FC<AlbumTableProps> = ({ data }: AlbumTableProps): JSX.E
         newStrArr.unshift(current)
       }
     }
-
     /**
      * Join the array back into a string and return it
      */

@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   margin-bottom: 10px;
   display: flex;
   align-items: center;
+  justify-content: center;
 `
 
 const Instructions = styled.div`
@@ -27,7 +28,7 @@ type FilterInputProps = {
 const FilterInput = ({ query, changeHandler }: FilterInputProps): JSX.Element => {
   return (
     <Wrapper>
-      <Instructions>Use this input to filter data...</Instructions>
+      <Instructions>Search By Album or Artist:</Instructions>
       <input type='text' className={css.filterInput} value={query} onChange={changeHandler} />
     </Wrapper>
   )
